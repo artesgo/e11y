@@ -1,0 +1,23 @@
+<fieldset>
+  <legend>{{ groupLabel }}</legend>
+  <label *ngFor="let option of options">
+    <input type="radio" name="option.name" id="option.id" class="accessible" />
+    <svg focusable="false" [attr.width]="width" [attr.height]="height">
+      <svg:circle class="svg-radio"
+        cx="16"
+        cy="16"
+        fill="#FFF"
+        stroke-width="1px"
+        stroke="#000"
+        r="12"
+      ></svg:circle>
+      <svg:circle class="indicator"
+        cx="16"
+        cy="16"
+        stroke="#000"
+        r="8"
+      ></svg:circle>
+    </svg>
+    {{ option.label }}
+  </label>
+</fieldset>

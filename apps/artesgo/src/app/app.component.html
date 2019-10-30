@@ -1,0 +1,72 @@
+<div style="text-align:center">
+  <h1>Welcome to {{ title }}!</h1>
+</div>
+
+<main>
+  <!-- TODO: Carousel -->
+  <h2>Elly Carousel</h2>
+  <e11y-carousel [slide]="slide" [skip]="'skip tester carousel'" [end]="'you are at the end, skip to start?'" [templates]="[
+    slide1, slide2, slide3, slide4, slide5
+  ]">
+    <ng-template #slide1 let-name>
+      <div class="slide" [ngStyle]="
+        { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
+      ">
+        <div class="slide-content bottom-right">
+          <h3 (focus)="slide = 0" tabindex="0">Slide 1 Title</h3>
+          <button (focus)="slide = 0">Slide 1 Action</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #slide2 let-name>
+      <div class="slide" [ngStyle]="
+        { 'background-image': 'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'}
+      ">
+        <div class="slide-content right">
+          <h3 (focus)="slide = 1" tabindex="0">Slide 2 Title</h3>
+          <!-- <img [ngStyle]="{'height.px': 300}" src="" alt="blocks spelling out change or chance with the g flipped half between C and G"> -->
+          <button (focus)="slide = 1">Slide 2 Action</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #slide3 let-name>
+      <div class="slide" [ngStyle]="
+        { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
+      ">
+        <div class="slide-content bottom">
+          <h3 (focus)="slide = 2" tabindex="0">Slide 3 Title</h3>
+          <button (focus)="slide = 2">Slide 3 Action</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #slide4 let-name>
+      <div class="slide" [ngStyle]="
+        { 'background-image': 'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'}
+      ">
+        <div class="slide-content right-bottom">
+          <h3 (focus)="slide = 3" tabindex="0">Slide 4 Title</h3>
+          <button (focus)="slide = 3">Slide 4 Action</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #slide5 let-name>
+      <div class="slide" [ngStyle]="
+        { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
+      ">
+        <div class="slide-content bottom">
+          <h3 (focus)="slide = 4" tabindex="0">Slide 5 Title</h3>
+          <button (focus)="slide = 4">Slide 5 Action</button>
+        </div>
+      </div>
+    </ng-template>
+  </e11y-carousel>
+  <!-- TODO: Radio A11y -->
+  <h2>Elly Radios</h2>
+  <e11y-radio [options]="options"></e11y-radio>
+  <!-- TODO: Mongo DB Grocery App -->
+
+  <!-- TODO: Server Sent Event -->
+
+  <!-- TODO: GSAP Animations -->
+  <div class="gsap" #gsapEl></div>
+</main>

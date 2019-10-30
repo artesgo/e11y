@@ -1,0 +1,20 @@
+{
+  "name": "space-station",
+  "version": "1.0.0",
+  "description": "docker hapi angular mongo",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mongo": "docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:latest",
+    "bash": "docker exec -it mongodb bash",
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/inert": "^5.2.2",
+    "@hapi/joi": "^16.1.7",
+    "mongoose": "^5.7.7"
+  }
+}

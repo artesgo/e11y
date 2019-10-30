@@ -1,0 +1,179 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "artesgo": {
+      "root": "apps/artesgo/",
+      "sourceRoot": "apps/artesgo/src",
+      "projectType": "application",
+      "prefix": "artesgo",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "server/src/public",
+            "index": "apps/artesgo/src/index.html",
+            "main": "apps/artesgo/src/main.ts",
+            "polyfills": "apps/artesgo/src/polyfills.ts",
+            "tsConfig": "apps/artesgo/tsconfig.app.json",
+            "assets": [
+              "apps/artesgo/src/favicon.ico",
+              "apps/artesgo/src/assets"
+            ],
+            "styles": ["apps/artesgo/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/artesgo/src/environments/environment.ts",
+                  "with": "apps/artesgo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "artesgo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "artesgo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "artesgo:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/artesgo/tsconfig.app.json",
+              "apps/artesgo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/artesgo/jest.config.js",
+            "tsConfig": "apps/artesgo/tsconfig.spec.json",
+            "setupFile": "apps/artesgo/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "artesgo-e2e": {
+      "root": "apps/artesgo-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/artesgo-e2e/cypress.json",
+            "tsConfig": "apps/artesgo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "artesgo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "artesgo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/artesgo-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "e11y": {
+      "root": "libs/e11y",
+      "sourceRoot": "libs/e11y/src",
+      "projectType": "library",
+      "prefix": "e11y",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/e11y/tsconfig.lib.json",
+            "project": "libs/e11y/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/e11y/tsconfig.lib.json",
+              "libs/e11y/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/e11y/jest.config.js",
+            "tsConfig": "libs/e11y/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss",
+      "framework": "angular"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "artesgo"
+}

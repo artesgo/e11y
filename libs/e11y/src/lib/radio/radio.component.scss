@@ -1,0 +1,24 @@
+@import "../mixins";
+
+input:checked + svg .indicator {
+  fill: #FC0;
+  transition: 0.5s;
+}
+input:focus + svg .svg-radio {
+  stroke-width: 3px;
+  stroke: #FC0;
+  transition: 0.5s;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.accessible {
+  height: 22px;
+  width: 22px;
+  left: 6px;
+  position: absolute;
+}

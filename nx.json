@@ -1,0 +1,21 @@
+{
+  "npmScope": "artesgo",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "artesgo": {
+      "tags": []
+    },
+    "artesgo-e2e": {
+      "tags": []
+    },
+    "e11y": {
+      "tags": []
+    }
+  }
+}

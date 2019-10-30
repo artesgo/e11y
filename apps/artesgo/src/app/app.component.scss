@@ -1,0 +1,48 @@
+.slide {
+  position: relative;
+  // background-image: url('https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052');
+  background-repeat: no-repeat;
+  background-position: center;
+  // height / width required
+  height: 300px;
+  width: 100vh;
+  background: #FC0;
+  // max-width: 1200px;
+
+  &-content {
+    // position: absolute;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+
+    h3 {
+      background: #FC0;
+      box-sizing: border-box;
+    }
+    button {
+      background: none;
+      background: #FC0;
+      border: 1px solid black;
+      margin: 0;
+      margin-bottom: 20px;
+      padding: 0;
+      width: 100px;
+    }
+
+    &.right {
+      align-items: flex-end;
+    }
+
+    &.bottom-right {
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    &.bottom {
+      justify-content: flex-end;
+    }
+  }
+}
