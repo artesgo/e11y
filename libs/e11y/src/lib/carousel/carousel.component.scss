@@ -9,6 +9,7 @@ ul {
   display: flex;
 
   li {
+    width: 100%;
     &.shown {
       opacity: 100;
       transition: 0.5s;

@@ -1,14 +1,18 @@
 @import "../mixins";
 
-input:checked + svg .indicator {
-  fill: #FC0;
-  transition: 0.5s;
+input:checked {
+  & + svg .indicator {
+    fill: #FC0;
+    transition: 0.5s;
+  }
 }
+
 input:focus + svg .svg-radio {
   stroke-width: 3px;
   stroke: #FC0;
   transition: 0.5s;
 }
+
 
 label {
   display: flex;

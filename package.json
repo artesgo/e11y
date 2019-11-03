@@ -1,30 +1,31 @@
 {
-  "name": "artesgo",
-  "version": "0.0.0",
+  "name": "@artesgo/foundation",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib": "ng build --project=e11y && cp ./libs/e11y/_e11y.scss ./dist/libs/e11y/ && rsync -r ./libs/e11y/styles/* ./dist/libs/e11y/styles",
     "test": "ng test",
-    "lint": "./node_modules/.bin/nx lint && ng lint",
+    "lint": "nx lint && ng lint",
     "e2e": "ng e2e",
-    "affected:apps": "./node_modules/.bin/nx affected:apps",
-    "affected:libs": "./node_modules/.bin/nx affected:libs",
-    "affected:build": "./node_modules/.bin/nx affected:build",
-    "affected:e2e": "./node_modules/.bin/nx affected:e2e",
-    "affected:test": "./node_modules/.bin/nx affected:test",
-    "affected:lint": "./node_modules/.bin/nx affected:lint",
-    "affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
-    "affected": "./node_modules/.bin/nx affected",
-    "format": "./node_modules/.bin/nx format:write",
-    "format:write": "./node_modules/.bin/nx format:write",
-    "format:check": "./node_modules/.bin/nx format:check",
+    "affected:apps": "nx affected:apps",
+    "affected:libs": "nx affected:libs",
+    "affected:build": "nx affected:build",
+    "affected:e2e": "nx affected:e2e",
+    "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "affected": "nx affected",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check",
     "update": "ng update @nrwl/schematics",
     "update:check": "ng update",
-    "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
-    "dep-graph": "./node_modules/.bin/nx dep-graph",
-    "help": "./node_modules/.bin/nx help"
+    "workspace-schematic": "nx workspace-schematic",
+    "dep-graph": "nx dep-graph",
+    "help": "nx help"
   },
   "private": true,
   "dependencies": {
@@ -66,5 +67,16 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "3.2.2"
-  }
+  },
+  "description": "Accessible Everything",
+  "main": "jest.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artesgo/e11y.git"
+  },
+  "author": "artesgo",
+  "bugs": {
+    "url": "https://github.com/artesgo/e11y/issues"
+  },
+  "homepage": "https://github.com/artesgo/e11y#readme"
 }

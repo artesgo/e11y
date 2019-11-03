@@ -1,3 +1,9 @@
+.gsap {
+  width: 1px;
+  height: 1px;
+  background-color: #000;
+}
+
 .slide {
   position: relative;
   // background-image: url('https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052');
@@ -5,7 +11,7 @@
   background-position: center;
   // height / width required
   height: 300px;
-  width: 100vh;
+  border: 1px solid pink;
   background: #FC0;
   // max-width: 1200px;
 

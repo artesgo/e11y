@@ -3,43 +3,67 @@
 </div>
 
 <main>
-  <!-- TODO: Carousel -->
   <h2>Elly Carousel</h2>
   <e11y-carousel [slide]="slide" [skip]="'skip tester carousel'" [end]="'you are at the end, skip to start?'" [templates]="[
-    slide1, slide2, slide3, slide4, slide5
+    slide2, slide1, slide3, slide4, slide5
   ]">
-    <ng-template #slide1 let-name>
+
+    <ng-template #slide1>
       <div class="slide" [ngStyle]="
         { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
       ">
         <div class="slide-content bottom-right">
-          <h3 (focus)="slide = 0" tabindex="0">Slide 1 Title</h3>
-          <button (focus)="slide = 0">Slide 1 Action</button>
+          <h3 (focus)="slide = 1" tabindex="0">Elly Radio Buttons</h3>
+          <div class="radio-description">Fancy Radio Animations</div>
+          <e11y-radio [options]="options" (focus)="slide = 1"></e11y-radio>
         </div>
       </div>
     </ng-template>
-    <ng-template #slide2 let-name>
+
+    <ng-template #slide2>
       <div class="slide" [ngStyle]="
         { 'background-image': 'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'}
       ">
         <div class="slide-content right">
-          <h3 (focus)="slide = 1" tabindex="0">Slide 2 Title</h3>
-          <!-- <img [ngStyle]="{'height.px': 300}" src="" alt="blocks spelling out change or chance with the g flipped half between C and G"> -->
-          <button (focus)="slide = 1">Slide 2 Action</button>
+          <h3 (focus)="slide = 0" tabindex="0">GSAP ANIMATIONS!</h3>
+          <div class="gsap" #gsapEl></div>
+          <button (focus)="slide = 0" (click)="animateMe()">That's nice.</button>
         </div>
       </div>
     </ng-template>
-    <ng-template #slide3 let-name>
+
+    <ng-template #slide3>
       <div class="slide" [ngStyle]="
         { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
       ">
         <div class="slide-content bottom">
           <h3 (focus)="slide = 2" tabindex="0">Slide 3 Title</h3>
-          <button (focus)="slide = 2">Slide 3 Action</button>
+          <svg focusable="false" [attr.width]="'32'" [attr.height]="'32'" #rotato>
+            <svg:rect
+              width="32"
+              height="32"
+              stroke="#000"
+            >
+            </svg:rect>
+            <svg:circle
+              *ngFor="let leaf of [0,1,2,3,4,5,6,7]; let i = index;"
+              fill="#FFF"
+              stroke-width="1px"
+              stroke="#000"
+              r="8"
+              cx="16"
+              cy="16"
+              transform="scale(1, 0.5)"
+              ></svg:circle>
+              <!-- transform="scale(x, y)" -->
+              <!-- transform="rotate( # deg, rad, turns)" -->
+          </svg>
+          <button (focus)="slide = 2" (click)="popIn()">Slide 3 Action</button>
         </div>
       </div>
     </ng-template>
-    <ng-template #slide4 let-name>
+
+    <ng-template #slide4>
       <div class="slide" [ngStyle]="
         { 'background-image': 'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'}
       ">
@@ -49,7 +73,8 @@
         </div>
       </div>
     </ng-template>
-    <ng-template #slide5 let-name>
+
+    <ng-template #slide5>
       <div class="slide" [ngStyle]="
         { 'background-image': 'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'}
       ">
@@ -60,13 +85,7 @@
       </div>
     </ng-template>
   </e11y-carousel>
-  <!-- TODO: Radio A11y -->
-  <h2>Elly Radios</h2>
-  <e11y-radio [options]="options"></e11y-radio>
+
   <!-- TODO: Mongo DB Grocery App -->
-
   <!-- TODO: Server Sent Event -->
-
-  <!-- TODO: GSAP Animations -->
-  <div class="gsap" #gsapEl></div>
 </main>
