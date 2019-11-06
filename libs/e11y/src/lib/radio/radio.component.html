@@ -1,7 +1,11 @@
 <fieldset>
-  <legend>{{ groupLabel }}</legend>
+  <legend>{{ groupName }}</legend>
   <label *ngFor="let option of options; let i = index;">
-    <input type="radio" name="option.name" id="option.id" class="accessible" (click)="focused(option, i)" (focus)="focused(option, i)" (blur)="blurred(option, i)" />
+    <input type="radio" [name]="option.name" [id]="option.id" class="accessible" [value]="option.value"
+      (click)="checked(option)"
+      (touch)="touched(option)"
+      (focus)="focused(option, i)"
+      (blur)="blurred(option, i)" />
     <svg focusable="false" [attr.width]="width" [attr.height]="height" #radios>
       <g #pettles>
         <svg:path

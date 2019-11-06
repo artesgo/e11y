@@ -1,25 +1,49 @@
-import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef, AfterViewInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { E11yOption } from './e11y.option';
 import * as gsap from 'gsap';
 
 @Component({
   selector: 'e11y-radio',
   templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss']
+  styleUrls: ['./radio.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RadioComponent),
+      multi: true
+    }
+  ]
 })
-export class RadioComponent implements AfterViewInit {
-  @Input() groupLabel: string = "radio group";
+export class RadioComponent implements AfterViewInit, ControlValueAccessor {
+  @Input() groupName: string = "radio group";
   @Input() options: E11yOption[] = [];
   @Output() focus = new EventEmitter();
   @ViewChildren('pettles') pettles: QueryList<ElementRef>;
   @ViewChildren('radios') radios: QueryList<ElementRef>;
+
   unit = 16;
   offset = 6;
-
   height = 32;
   width = 32;
-  constructor() {
+  value: string;
+  
+  private _onChange = (_: any) => {};
+  private _onTouch = (_: any) => {};
 
+  writeValue(option: string): void {
+    if (option !== undefined) {
+      this.value = option;
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChange = fn;
+  }
+
+
+  registerOnTouched(fn: any): void {
+    this._onTouch = fn;
   }
 
   ngAfterViewInit() {
@@ -33,6 +57,13 @@ export class RadioComponent implements AfterViewInit {
       .set(flower, {
         ...this.scaledDown()
       })
+  }
+
+  checked(option: E11yOption) {
+    this._onChange(option.value);
+  }
+  touched(option: E11yOption) {
+    this._onTouch(option.value);
   }
 
   focused(option: E11yOption, index: number) {
@@ -79,7 +110,6 @@ export class RadioComponent implements AfterViewInit {
       // .eventCallback('onComplete', () => {
       //   console.log('onComplete');
       // })
-
   }
 
   getRotation(index: number) {

@@ -10,9 +10,6 @@ export class CarouselComponent implements OnInit {
   @Input() end: string;
   @Input() templates: TemplateRef<any>[];
   @Input() slide: number = 0;
-  names: string[] = [
-    'mike', 'tina', 'tony', 'terrance', 'karla'
-  ]
 
   constructor() { }
 

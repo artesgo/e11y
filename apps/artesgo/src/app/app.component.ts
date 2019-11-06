@@ -1,12 +1,13 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from "@angular/core";
 import * as gsap from 'gsap';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: "artesgo-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('gsapEl') gsapEl: ElementRef;
   @ViewChild('rotato') rotato: ElementRef;
 
@@ -14,29 +15,40 @@ export class AppComponent implements AfterViewInit {
   options = [
     {
       label: 'pancake',
-      name: 'pancake',
+      name: 'grouper',
       value: 'pancake',
     },
     {
       label: 'oatmeal',
-      name: 'oatmeal',
+      name: 'grouper',
       value: 'oatmeal',
     },
     {
       label: 'soy sauce',
-      name: 'soy sauce',
+      name: 'grouper',
       value: 'soy sauce',
     },
     {
       label: 'tofu',
-      name: 'tofu',
+      name: 'grouper',
       value: 'tofu',
     },
   ];
   slide = 0;
   shown = true;
+  form: FormGroup;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      e11yRadio: new FormControl('pancake')
+    });
+
+    this.form.get('e11yRadio').valueChanges.subscribe(change => {
+      console.log(change);
+    });
   }
 
   ngAfterViewInit() {
@@ -80,11 +92,17 @@ export class AppComponent implements AfterViewInit {
         //   .to(leaf, duration, { ease: gsap.Linear.easeNone, transform: 'rotate(6.2rad)' })
       })
   }
+
   getRotation(index: number) {
     return `rotate( ${index*45} 16  16)`;
   }
 
   prevDefault(event: Event) {
     event.preventDefault();
+  }
+
+  onSubmit() {
+    console.log('submitted');
+    
   }
 }
