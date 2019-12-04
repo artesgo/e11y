@@ -4,19 +4,11 @@ import { RadioComponent } from './radio/radio.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SelectComponent } from './select/select.component';
 
+const exported = [RadioComponent, CarouselComponent, SelectComponent];
+
 @NgModule({
-  declarations: [
-    RadioComponent,
-    CarouselComponent,
-    SelectComponent,
-  ],
-  exports: [ 
-    RadioComponent,
-    CarouselComponent,
-    SelectComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: exported,
+  exports: exported,
+  imports: [CommonModule],
 })
-export class E11yModule { }
+export class E11yModule {}

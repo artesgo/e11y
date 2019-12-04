@@ -12,7 +12,7 @@
   // height / width required
   height: 300px;
   border: 1px solid pink;
-  background: #FC0;
+  background: #333;
   // max-width: 1200px;
 
   &-content {
@@ -25,12 +25,12 @@
     height: 100%;
 
     h3 {
-      background: #FC0;
+      background: #fc0;
       box-sizing: border-box;
     }
     button {
       background: none;
-      background: #FC0;
+      background: #fc0;
       border: 1px solid black;
       margin: 0;
       margin-bottom: 20px;
@@ -51,4 +51,8 @@
       justify-content: flex-end;
     }
   }
+}
+
+e11y-select {
+  width: 150px;
 }

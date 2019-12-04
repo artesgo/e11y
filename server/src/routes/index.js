@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
-const Path = require("path");
-const Mongoose = require("mongoose");
-const Joi = require("@hapi/joi");
+const Path = require('path');
+const Mongoose = require('mongoose');
+const Joi = require('@hapi/joi');
 
-Mongoose.connect("mongodb://localhost/artes");
+Mongoose.connect('mongodb://mongo:27017/growcery');
 
-const GrowceryModel = Mongoose.model("grocery", {
+const GrowceryModel = Mongoose.model('grocery', {
   name: String,
   brand: String,
   sale: Number,
@@ -28,16 +28,16 @@ module.exports.register = async server => {
    * serves all files from public
    */
   server.route({
-    method: "GET",
-    path: "/{param*}",
+    method: 'GET',
+    path: '/{param*}',
     handler: {
-      directory: { path: "." }
-    }
+      directory: { path: '.' },
+    },
   });
 
   server.route({
-    method: "GET",
-    path: "/grocery",
+    method: 'GET',
+    path: '/grocery',
     handler: async (request, h) => {
       try {
         var item = await GrowceryModel.find().exec();
@@ -45,12 +45,12 @@ module.exports.register = async server => {
       } catch (error) {
         return h.response(error).code(500);
       }
-    }
+    },
   });
 
   server.route({
-    method: "GET",
-    path: "/grocery/{id}",
+    method: 'GET',
+    path: '/grocery/{id}',
     handler: async (request, h) => {
       try {
         var item = await GrowceryModel.findById(request.params.id).exec();
@@ -58,12 +58,12 @@ module.exports.register = async server => {
       } catch (error) {
         return h.response(error).code(500);
       }
-    }
+    },
   });
 
   server.route({
-    method: "PUT",
-    path: "/grocery/{id}",
+    method: 'PUT',
+    path: '/grocery/{id}',
     options: {
       // validate: {
       //   payload: {
@@ -88,15 +88,15 @@ module.exports.register = async server => {
       } catch (error) {
         return h.response(error).code(500);
       }
-    }
+    },
   });
 
   /**
    * only for Admin
    */
   server.route({
-    method: "DELETE",
-    path: "/grocery/{id}",
+    method: 'DELETE',
+    path: '/grocery/{id}',
     handler: async (request, h) => {
       try {
         var result = await GrowceryModel.findByIdAndDelete(request.params.id);
@@ -104,13 +104,12 @@ module.exports.register = async server => {
       } catch (error) {
         return h.response(error).code(500);
       }
-    }
+    },
   });
 
-  
   server.route({
-    method: "POST",
-    path: "/grocery",
+    method: 'POST',
+    path: '/grocery',
     options: {
       // validate: {
       //   payload: {
@@ -132,6 +131,6 @@ module.exports.register = async server => {
       } catch (error) {
         return h.response(error).code(500);
       }
-    }
+    },
   });
 };

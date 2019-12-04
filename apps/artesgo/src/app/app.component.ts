@@ -1,100 +1,61 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from "@angular/core";
 import * as gsap from 'gsap';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { AppService } from './app.service';
+import { animate, AnimProp, set } from '@artesgo/e11y';
+import { GameSettings } from './game-settings/game-settings';
 
 @Component({
-  selector: "artesgo-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'artesgo-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('gsapEl') gsapEl: ElementRef;
+export class AppComponent implements OnInit {
   @ViewChild('rotato') rotato: ElementRef;
 
-  title = "artesgo";
-  options = [
-    {
-      label: 'pancake',
-      name: 'grouper',
-      value: 'pancake',
-    },
-    {
-      label: 'oatmeal',
-      name: 'grouper',
-      value: 'oatmeal',
-    },
-    {
-      label: 'soy sauce',
-      name: 'grouper',
-      value: 'soy sauce',
-    },
-    {
-      label: 'tofu',
-      name: 'grouper',
-      value: 'tofu',
-    },
-  ];
+  title = 'artesgo';
+
+  players = GameSettings.players;
+  boardStyle = GameSettings.boardStyle;
+
+  gpStyle = GameSettings.gamePieceStyle;
+  playerStyle = GameSettings.playerPiecesStyle;
+  cardStyle = GameSettings.cardStyle;
+
   slide = 0;
   shown = true;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder, private appService: AppService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      e11yRadio: new FormControl('pancake')
+      playerRadio: new FormControl(),
+      boardRadio: new FormControl(),
+      cardRadio: new FormControl(),
+      e11ySelect: new FormControl(),
     });
 
-    this.form.get('e11yRadio').valueChanges.subscribe(change => {
+    this.form.get('e11ySelect').valueChanges.subscribe(change => {
       console.log(change);
     });
   }
-
-  ngAfterViewInit() {
-    // gsap.TweenLite.set(this.gsapEl.nativeElement, {
-    //   background: '#FC0'
-    // })
-  }
-
-  animateMe() {
-    const box: Element = this.gsapEl.nativeElement;
-    const duration = 1.3;
-    if (this.shown) {
-      this.shown = false;
-      gsap.TweenMax
-        .to(box, duration, { ease: gsap.Bounce.easeOut, height: 32, width: 32, 'background-color': 'rbga(0, 255, 0, 1)' })
-    } else {
-      this.shown = true;
-      gsap.TweenMax
-        .to(box, duration, { ease: gsap.Bounce.easeOut, height: 1, width: 1, 'background-color': 'rbga(0, 0, 0, 1)' })
-        .eventCallback('onComplete', () => {
-          console.log('onComplete');
-        })
-    }
-  }
-
+  // TODO: GSAP rotate svg component
   popIn() {
     const leaf: Element = this.rotato.nativeElement;
     const duration = 1.3;
-
-    gsap.TweenMax
-      .set(leaf, {
-        rotation: "0"
-      })
-    gsap.TweenMax
-      .to(leaf, duration, {
-        ease: gsap.Linear.easeNone,
-        rotation: "360",
-      })
-      .eventCallback('onComplete', () => {
-        // gsap.TweenMax
-        //   .to(leaf, duration, { ease: gsap.Linear.easeNone, transform: 'rotate(6.2rad)' })
-      })
+    const start = { rotation: '0' };
+    const ease = gsap.Linear.easeNone;
+    const animation: AnimProp = { rotation: '60' };
+    const callback = () => {
+      console.log("i'm done");
+    };
+    set(leaf, start);
+    animate(leaf, duration, ease, animation, callback);
   }
 
   getRotation(index: number) {
-    return `rotate( ${index*45} 16  16)`;
+    return `rotate( ${index * 45} 16  16)`;
   }
 
   prevDefault(event: Event) {
@@ -103,6 +64,5 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     console.log('submitted');
-    
   }
 }

@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mongo": "docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:latest",
-    "bash": "docker exec -it mongodb bash",
-    "start": "node ."
+    "build": "docker build -t e11y-server .",
+    "bash": "docker exec -it server_mongo_1 bash",
+    "prestart": "npm run build",
+    "start": "docker-compose up -d"
   },
   "author": "",
   "license": "ISC",

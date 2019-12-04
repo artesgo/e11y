@@ -1,0 +1,48 @@
+@import '../mixins';
+
+.e11y-overlay {
+  // TODO: cdk overlay
+  @include fullscreenOverlay;
+}
+
+// restyles fieldset
+fieldset {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.e11y-options {
+  position: absolute;
+  width: 100%;
+
+  section {
+    // position: relative;
+    border: 1px solid black;
+    overflow: scroll;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.e11y-selected {
+  display: flex;
+  align-items: center;
+}
+
+.e11y-option {
+  padding-left: 16px;
+  &:hover {
+    background: #ccc;
+    transition: 300ms;
+  }
+}
+
+.e11y-selected-option {
+  color: #fc0;
+  background: #333;
+  &:hover {
+    background: #333;
+  }
+}
