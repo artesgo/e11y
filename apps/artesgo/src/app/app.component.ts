@@ -12,16 +12,12 @@ import { GameSettings } from './game-settings/game-settings';
 })
 export class AppComponent implements OnInit {
   @ViewChild('rotato') rotato: ElementRef;
-
   title = 'artesgo';
-
   players = GameSettings.players;
   boardStyle = GameSettings.boardStyle;
-
   gpStyle = GameSettings.gamePieceStyle;
   playerStyle = GameSettings.playerPiecesStyle;
   cardStyle = GameSettings.cardStyle;
-
   slide = 0;
   shown = true;
   form: FormGroup;
@@ -37,7 +33,10 @@ export class AppComponent implements OnInit {
     });
 
     this.form.get('e11ySelect').valueChanges.subscribe(change => {
-      console.log(change);
+      console.log('select', change);
+    });
+    this.form.get('playerRadio').valueChanges.subscribe(change => {
+      console.log('radio', change);
     });
   }
   // TODO: GSAP rotate svg component
@@ -64,5 +63,9 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     console.log('submitted');
+  }
+
+  focus(slide: any) {
+    this.slide = slide;
   }
 }

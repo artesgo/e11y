@@ -1,24 +1,27 @@
 <!-- skip carousel button -->
 <button #startEl (click)="endEl.focus()" class="accessible">
-  {{skip}}, {{ templates.length }} slides
+  {{ skip }}, {{ slides.length }} slides
 </button>
 
 <!-- Carousel items -->
 <ul>
-  <ng-container *ngFor="let template of templates; let i = index;">
-    <li [ngClass]="i === slide ? 'shown' : 'hidden'">
-      <ng-container *ngTemplateOutlet="template"></ng-container>
-    </li>
-  </ng-container>
+  <ng-content></ng-content>
 </ul>
 
 <!-- carousel visual quick nav -->
 <div class="flex">
   <span aria-hidden="true">Go to slide #:</span>
-  <button tabindex="-1" aria-hidden="true" *ngFor="let t of templates; let i = index;" (click)="goTo(i)">{{i + 1}}</button>
+  <button
+    tabindex="-1"
+    aria-hidden="true"
+    *ngFor="let t of slides; let i = index"
+    (click)="setVisibleSlide(i)"
+  >
+    {{ i + 1 }}
+  </button>
 </div>
 
 <!-- end of carousel -->
 <button #endEl (click)="startEl.focus()" class="accessible">
-  {{end}}
+  {{ end }}
 </button>

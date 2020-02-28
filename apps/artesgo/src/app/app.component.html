@@ -11,93 +11,80 @@
       [slide]="slide"
       [skip]="'skip tester carousel'"
       [end]="'you are at the end, skip to start?'"
-      [templates]="[slide1, slide2, slide3, slide4, slide5]"
     >
-      <ng-template #slide1>
+      <li e11ySlide (focused)="focus($event)">
         <div class="slide">
-          <!-- [ngStyle]="{
-              'background-image':
-                'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'
-            }" -->
           <div class="slide-content bottom-right">
-            <h3 (focus)="slide = 0" tabindex="0">Game Setup (1 of 5)</h3>
+            <h3>Game Setup (1 of 5)</h3>
             <e11y-radio
               formControlName="playerRadio"
               [groupName]="'Player Count'"
               [options]="players"
-              (focus)="slide = 0"
             ></e11y-radio>
           </div>
         </div>
-      </ng-template>
-
-      <ng-template #slide2>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide"
+        >Focuser</span
+      >
+      <li e11ySlide (focused)="focus($event)">
         <div class="slide">
-          <!-- [ngStyle]="{
-              'background-image':
-                'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'
-            }" -->
           <div class="slide-content bottom-right">
-            <h3 (focus)="slide = 1" tabindex="0">Game Setup (2 of 5)</h3>
+            <h3>Game Setup (2 of 5)</h3>
             <e11y-radio
               formControlName="boardRadio"
               [groupName]="'Board Style'"
               [options]="boardStyle"
-              (focus)="slide = 1"
             ></e11y-radio>
           </div>
         </div>
-      </ng-template>
-
-      <ng-template #slide3>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide"
+        >Focuser</span
+      >
+      <li e11ySlide (focused)="focus($event)">
         <div class="slide">
-          <!-- [ngStyle]="{
-              'background-image':
-                'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'
-            }" -->
           <div class="slide-content bottom-right">
-            <h3 (focus)="slide = 2" tabindex="0">Game Setup (3 of 5)</h3>
+            <h3>Game Setup (3 of 5)</h3>
             <e11y-radio
               formControlName="cardRadio"
               [groupName]="'Card Style'"
               [options]="cardStyle"
-              (focus)="slide = 2"
             ></e11y-radio>
           </div>
         </div>
-      </ng-template>
-
-      <ng-template #slide4>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide"
+        >Focuser</span
+      >
+      <li e11ySlide (focused)="focus($event)">
         <div class="slide">
-          <!-- [ngStyle]="{
-              'background-image':
-                'url(https://media.istockphoto.com/photos/monopoly-chance-question-mark-concept-picture-id157727571)'
-            }" -->
           <div class="slide-content bottom-right">
-            <h3 (focus)="slide = 3" tabindex="0">Slide 4 Title</h3>
-            <svg width="400" height="400" #game></svg>
-            <button (focus)="slide = 3">Slide 4 Action</button>
+            <h3>Slide 4 Title</h3>
+            <svg width="300" height="300" #game></svg>
+            <button>Slide 4 Action</button>
           </div>
         </div>
-      </ng-template>
-
-      <ng-template #slide5>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide"
+        >Focuser</span
+      >
+      <li e11ySlide (focused)="focus($event)">
         <div class="slide">
-          <!-- [ngStyle]="{
-              'background-image':
-                'url(https://media.istockphoto.com/photos/hand-flip-wooden-cube-with-word-change-to-chance-personal-development-picture-id871196052)'
-            }" -->
           <div class="slide-content bottom-right">
-            <h3 (focus)="slide = 4" tabindex="0">Select Component</h3>
+            <h3>Select Component</h3>
             <e11y-select
               formControlName="e11ySelect"
               [name]="selectRadios"
               [options]="options"
             ></e11y-select>
-            <button (focus)="slide = 4">Select Component</button>
+            <button>Select Component</button>
           </div>
         </div>
-      </ng-template>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide"
+        >Focuser</span
+      >
     </e11y-carousel>
   </form>
   <div>

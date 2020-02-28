@@ -63,8 +63,8 @@
         ]
       }
     ],
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
+    "directive-selector": [true, "attribute", "e11y", "camelCase"],
+    "component-selector": [true, "element", "e11y", "kebab-case"],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,

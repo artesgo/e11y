@@ -27,6 +27,8 @@ import { animate, set, scaleFromCenter, AnimProp } from '../gsap.util';
   ],
 })
 export class RadioComponent implements AfterViewInit, ControlValueAccessor {
+  static _ID: number = 0;
+  private readonly id: number;
   @Input() groupName: string = 'radio group';
   @Input() options: E11yOption[] = [];
   @Output() focus = new EventEmitter();
@@ -37,6 +39,7 @@ export class RadioComponent implements AfterViewInit, ControlValueAccessor {
   size = 32;
   value: string;
 
+  //#region ControlValueAccessor
   private _onChange = (_: any) => {};
   private _onTouch = (_: any) => {};
 
@@ -53,7 +56,11 @@ export class RadioComponent implements AfterViewInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this._onTouch = fn;
   }
+  //#endregion
 
+  constructor() {
+    this.id = RadioComponent._ID++;
+  }
   ngAfterViewInit() {
     for (let flower of this.pettles.toArray()) {
       this.setDefault(flower.nativeElement);
@@ -66,6 +73,7 @@ export class RadioComponent implements AfterViewInit, ControlValueAccessor {
     });
   }
 
+  //#region event handlers
   checked(option: E11yOption) {
     this._onChange(option.value);
   }
@@ -100,6 +108,7 @@ export class RadioComponent implements AfterViewInit, ControlValueAccessor {
       ...scaleFromCenter(this.size / 2, this.offset),
     });
   }
+  //#endregion
 
   getRotation(index: number) {
     return `rotate( ${index * 45} ${this.size / 2}  ${this.size / 2})`;
