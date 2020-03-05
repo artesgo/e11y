@@ -1,20 +1,24 @@
 {
-  "npmScope": "artesgo",
+  "npmScope": "elly",
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.json": "*",
     "tslint.json": "*",
     "nx.json": "*"
   },
   "projects": {
-    "artesgo": {
+    "elly": {
       "tags": []
     },
-    "artesgo-e2e": {
-      "tags": []
+    "elly-e2e": {
+      "tags": [],
+      "implicitDependencies": ["elly"]
     },
-    "e11y": {
+    "elly-comp": {
       "tags": []
     }
   }

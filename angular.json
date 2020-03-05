@@ -1,41 +1,36 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "",
   "projects": {
-    "artesgo": {
-      "root": "apps/artesgo/",
-      "sourceRoot": "apps/artesgo/src",
+    "elly": {
       "projectType": "application",
-      "prefix": "artesgo",
       "schematics": {
-        "@nrwl/schematics:component": {
+        "@nrwl/angular:component": {
           "style": "scss"
         }
       },
+      "root": "apps/elly",
+      "sourceRoot": "apps/elly/src",
+      "prefix": "elly",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "server/src/public",
-            "index": "apps/artesgo/src/index.html",
-            "main": "apps/artesgo/src/main.ts",
-            "polyfills": "apps/artesgo/src/polyfills.ts",
-            "tsConfig": "apps/artesgo/tsconfig.app.json",
-            "assets": [
-              "apps/artesgo/src/favicon.ico",
-              "apps/artesgo/src/assets"
-            ],
-            "styles": ["apps/artesgo/src/styles.scss"],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "outputPath": "dist/apps/elly",
+            "index": "apps/elly/src/index.html",
+            "main": "apps/elly/src/main.ts",
+            "polyfills": "apps/elly/src/polyfills.ts",
+            "tsConfig": "apps/elly/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/elly/src/favicon.ico", "apps/elly/src/assets"],
+            "styles": ["apps/elly/src/styles.scss"],
+            "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/artesgo/src/environments/environment.ts",
-                  "with": "apps/artesgo/src/environments/environment.prod.ts"
+                  "replace": "apps/elly/src/environments/environment.ts",
+                  "with": "apps/elly/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -43,7 +38,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -52,6 +46,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -60,120 +59,113 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "artesgo:build"
+            "browserTarget": "elly:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "artesgo:build:production"
+              "browserTarget": "elly:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "artesgo:build"
+            "browserTarget": "elly:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/artesgo/tsconfig.app.json",
-              "apps/artesgo/tsconfig.spec.json"
+              "apps/elly/tsconfig.app.json",
+              "apps/elly/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/elly/**"]
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/artesgo/jest.config.js",
-            "tsConfig": "apps/artesgo/tsconfig.spec.json",
-            "setupFile": "apps/artesgo/src/test-setup.ts"
+            "jestConfig": "apps/elly/jest.config.js",
+            "tsConfig": "apps/elly/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/elly/src/test-setup.ts"
           }
         }
       }
     },
-    "artesgo-e2e": {
-      "root": "apps/artesgo-e2e",
+    "elly-e2e": {
+      "root": "apps/elly-e2e",
+      "sourceRoot": "apps/elly-e2e/src",
       "projectType": "application",
-      "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/builders:cypress",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/artesgo-e2e/cypress.json",
-            "tsConfig": "apps/artesgo-e2e/tsconfig.e2e.json",
-            "devServerTarget": "artesgo:serve"
+            "cypressConfig": "apps/elly-e2e/cypress.json",
+            "tsConfig": "apps/elly-e2e/tsconfig.e2e.json",
+            "devServerTarget": "elly:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "artesgo:serve:production"
+              "devServerTarget": "elly:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/artesgo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": ["apps/elly-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/elly-e2e/**"]
           }
         }
       }
     },
-    "e11y": {
-      "root": "libs/e11y",
-      "sourceRoot": "libs/e11y/src",
+    "elly-lib": {
       "projectType": "library",
-      "prefix": "e11y",
+      "root": "libs/elly",
+      "sourceRoot": "libs/elly/src",
+      "prefix": "elly",
       "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/e11y/tsconfig.lib.json",
-            "project": "libs/e11y/ng-package.json"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/e11y/tsconfig.lib.json",
-              "libs/e11y/tsconfig.spec.json"
+              "libs/elly/tsconfig.lib.json",
+              "libs/elly/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/elly/**"]
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/e11y/jest.config.js",
-            "tsConfig": "libs/e11y/tsconfig.spec.json"
+            "jestConfig": "libs/elly/jest.config.js",
+            "tsConfig": "libs/elly/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/elly/src/test-setup.ts"
           }
         }
       },
       "schematics": {
-        "@nrwl/schematics:component": {
+        "@nrwl/angular:component": {
           "styleext": "scss"
         }
       }
     }
   },
   "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "4101f7e0-4a70-4fd2-b3f6-c790e8e70bb4"
   },
   "schematics": {
-    "@nrwl/schematics:application": {
-      "style": "scss",
-      "framework": "angular"
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "@nrwl/schematics:library": {
-      "style": "scss"
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "artesgo"
+  "defaultProject": "elly"
 }

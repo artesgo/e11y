@@ -1,0 +1,73 @@
+<div class="e11y-overlay" *ngIf="showList" (click)="closeDropdown()"></div>
+<fieldset style="position: relative;">
+  
+  <!-- Hidden Native Controls -->
+  <label
+    *ngFor="let option of options; let f = first; let l = last; let i = index"
+    class="accessible"
+  >
+    <!-- single select -->
+    <input
+      [id]="id"
+      type="radio"
+      [name]="name"
+      #radio
+      [value]="option.value"
+      (keydown.arrowdown)="changeSelection(true)"
+      (keydown.arrowup)="changeSelection(true)"
+      (keydown.arrowright)="changeSelection(true)"
+      (keydown.arrowleft)="changeSelection(true)"
+      (keydown.enter)="changeSelection(false); click(false)"
+      (keydown.tab)="changeSelection(false); click(false)"
+      (keydown.shift.tab)="changeSelection(false); click(false)"
+      (click)="click(!showList); select(option, i)"
+      (focus)="focused = true"
+      (blur)="focused = false"
+    />
+    <div>
+      {{ option.label }}
+    </div>
+  </label>
+
+  <!-- Custom Dropdown Trigger -->
+  <div
+    class="e11y-selected"
+    [class.e11y-focused]="focused"
+    (click)="showList = !showList; focusRadios()"
+  >
+    <svg focusable="false" width="32" height="32" #svg>
+      <g #pettles>
+        <svg:path
+          *ngFor="let leaf of [0, 1, 2, 3, 4, 5, 6]; let j = index"
+          fill="#8F8"
+          stroke-width="1px"
+          stroke="#000"
+          [attr.transform]="getRotation(j)"
+          d="M 16 16 q -8 8 0 16 M 16 16 q 8 8 0 16"
+        ></svg:path>
+      </g>
+      <svg:circle
+        class="indicator"
+        cx="16"
+        cy="16"
+        stroke="#fff"
+        r="8"
+      ></svg:circle>
+    </svg>
+    {{ value?.label ? value.label : placeholder }}
+  </div>
+
+  <!-- Custom Dropdown List -->
+  <div class="e11y-options">
+    <section *ngIf="showList">
+      <div
+        *ngFor="let option of options; let i = index"
+        class="e11y-option"
+        [class.e11y-selected-option]="option === value"
+        (click)="click(!showList); select(option, i); selectNative(i)"
+      >
+        {{ option.label }}
+      </div>
+    </section>
+  </div>
+</fieldset>

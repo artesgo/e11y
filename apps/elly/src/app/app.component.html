@@ -1,0 +1,106 @@
+<div style="text-align:center">
+  <h1>Welcome to {{ title }}!</h1>
+</div>
+
+<main>
+  <h2>Elly Carousel</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- <e11y-radio formControlName="e11yRadio" [options]="options"></e11y-radio> -->
+    {{ form.value | json }}
+    <e11y-carousel
+      [slide]="slide"
+      [skip]="'skip tester carousel'"
+      [end]="'you are at the end, skip to start?'"
+    >
+      <li e11ySlide (focused)="focus($event)">
+        <div class="slide">
+          <div class="slide-content bottom-right">
+            <h3>Select Component</h3>
+            <e11y-select
+              formControlName="e11ySelect"
+              [name]="'selectRadios'"
+              [options]="options"
+            ></e11y-select>
+            <button>Select Component</button>
+          </div>
+        </div>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+        Focuser
+      </span>
+      <li e11ySlide (focused)="focus($event)">
+        <div class="slide">
+          <div class="slide-content bottom-right">
+            <h3>Game Setup (1 of 5)</h3>
+            <e11y-radio
+              formControlName="playerRadio"
+              [groupName]="'Player Count'"
+              [options]="players"
+            ></e11y-radio>
+          </div>
+        </div>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+        Focuser
+      </span>
+      <li e11ySlide (focused)="focus($event)">
+        <div class="slide">
+          <div class="slide-content bottom-right">
+            <h3>Game Setup (2 of 5)</h3>
+            <e11y-radio
+              formControlName="boardRadio"
+              [groupName]="'Board Style'"
+              [options]="boardStyle"
+            ></e11y-radio>
+          </div>
+        </div>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+        Focuser
+      </span>
+      <li e11ySlide (focused)="focus($event)">
+        <div class="slide">
+          <div class="slide-content bottom-right">
+            <h3>Game Setup (3 of 5)</h3>
+            <e11y-radio
+              formControlName="cardRadio"
+              [groupName]="'Card Style'"
+              [options]="cardStyle"
+            ></e11y-radio>
+          </div>
+        </div>
+      </li>
+      <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+        Focuser
+      </span>
+      <li e11ySlide (focused)="focus($event)">
+        <div class="slide">
+          <div class="slide-content bottom-right">
+            <h3>Slide 4 Title</h3>
+            <svg width="300" height="300" #game></svg>
+            <button>Slide 4 Action</button>
+          </div>
+        </div>
+      </li>
+    </e11y-carousel>
+  </form>
+  <div>
+    <select>
+      <option>checkbox component</option>
+      <option>button component</option>
+      <option>select component</option>
+      <option>input component</option>
+    </select>
+  </div>
+
+  <div>
+    done
+    <select>
+      <option>radio component</option>
+      <option>carousel component</option>
+    </select>
+  </div>
+
+  <!-- TODO: Mongo DB Grocery App -->
+  <!-- TODO: Server Sent Event -->
+</main>
