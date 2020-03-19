@@ -1,0 +1,11 @@
+{
+  "compileOnSave": true,
+  "extends": "../tsconfig.json",
+  "exclude": [
+    "../libs/**/src/test.ts",
+    "../libs/**/src/**/*.spec.ts",
+  ],
+  "include": [
+    "../libs/**/src/**/*",
+  ]
+}
