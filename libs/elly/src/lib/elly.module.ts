@@ -8,6 +8,7 @@ import {
   SlideDirective,
   SlideActivatorDirective,
 } from './carousel/slide/slide.directive';
+import { KalimbaComponent } from './kalimba/kalimba.component';
 
 const exported = [
   RadioComponent,
@@ -15,6 +16,7 @@ const exported = [
   SelectComponent,
   SlideDirective,
   SlideActivatorDirective,
+  KalimbaComponent,
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+<e11y-carousel
+  [slide]="slide"
+  [skip]="'skip tester carousel'"
+  [end]="'You are at the end, skip to start?'"
+>
+  <li e11ySlide (focused)="focus($event)">
+    <div class="slide">
+      <div class="slide-content bottom-right">
+        <h3>Slide 1</h3>
+      </div>
+    </div>
+    <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+      Focuser
+    </span>
+  </li>
+  <li e11ySlide (focused)="focus($event)">
+    <div class="slide">
+      <div class="slide-content bottom-right">
+        <h3>Slide 2</h3>
+      </div>
+    </div>
+    <span e11ySlideActivator (focused)="focus($event)" [currentSlide]="slide">
+      Focuser
+    </span>
+  </li>
+</e11y-carousel>
