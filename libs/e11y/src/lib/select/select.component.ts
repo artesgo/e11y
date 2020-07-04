@@ -40,8 +40,8 @@ export class SelectComponent implements ControlValueAccessor, AfterViewInit {
   @Input() options: E11yOption[];
   @Input() placeholder = 'Select...';
   @ViewChildren('radio') radios: QueryList<any>;
-  @ViewChild('svg') svg: ElementRef;
-  @ViewChild('pettles') pettles: ElementRef;
+  @ViewChild('svg', { static: true }) svg: ElementRef;
+  @ViewChild('pettles', { static: true }) pettles: ElementRef;
   _focused: boolean = false;
   set focused(val: boolean) {
     if (val) {

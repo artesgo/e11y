@@ -26,9 +26,10 @@
               "apps/artesgo/src/favicon.ico",
               "apps/artesgo/src/assets"
             ],
-            "styles": ["apps/artesgo/src/styles.scss"],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "styles": [
+              "apps/artesgo/src/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -81,7 +82,9 @@
               "apps/artesgo/tsconfig.app.json",
               "apps/artesgo/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -116,7 +119,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/artesgo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -141,7 +146,9 @@
               "libs/e11y/tsconfig.lib.json",
               "libs/e11y/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -164,7 +171,8 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/schematics",
+    "analytics": false
   },
   "schematics": {
     "@nrwl/schematics:application": {
