@@ -11,7 +11,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { E11yOption } from '../radio/e11y.option';
 import { animate, AnimProp, set, scaleFromCenter } from '../gsap.util';
-import * as gsap from 'gsap';
+import { Bounce } from 'gsap';
 
 /**
  * Radio Select Control
@@ -152,7 +152,7 @@ export class SelectComponent implements ControlValueAccessor, AfterViewInit {
     };
     const log = () => console.log('derp');
     set(graphic, start);
-    animate(graphic, duration, gsap.Bounce.easeOut, end, log);
+    animate(graphic, duration, Bounce.easeOut, end, log);
     this.unfoldPettles();
   }
   //#endregion : TEMPLATE ACTIONS
@@ -161,7 +161,7 @@ export class SelectComponent implements ControlValueAccessor, AfterViewInit {
   private foldPettles() {
     const pettles = this.pettles.nativeElement;
     const duration = 1.3;
-    animate(pettles, duration, gsap.Bounce.easeOut, {
+    animate(pettles, duration, Bounce.easeOut, {
       ...scaleFromCenter(this._size / 2, this._offset),
     });
   }
@@ -172,7 +172,7 @@ export class SelectComponent implements ControlValueAccessor, AfterViewInit {
     const unfoldPettles: AnimProp = {
       transform: 'translate( 0px, 0px ) scale(1)',
     };
-    animate(pettles, duration, gsap.Bounce.easeOut, unfoldPettles);
+    animate(pettles, duration, Bounce.easeOut, unfoldPettles);
   }
 
   /**

@@ -1,4 +1,4 @@
-import * as gsap from 'gsap';
+import { TweenMax, gsap } from 'gsap';
 
 export interface AnimProp {
   rotation?: string;
@@ -20,24 +20,25 @@ export function animate(
   animation: AnimProp,
   callback?
 ) {
-  // try {
-  //   gsap.TweenMax.to(element, duration, {
-  //     ease,
-  //     ...animation,
-  //   }).eventCallback('onComplete', callback ? callback : () => {});
-  // } catch (error) {
-  //   console.error('Animation Error: ', error);
-  // }
+  try {
+    TweenMax.to(element, duration, {
+      ease,
+      ...animation,
+    }).eventCallback('onComplete', callback ? callback : () => {});
+  } catch (error) {
+    console.error('Animation Error: ', error);
+  }
 }
 
 export function set(element: Element, start: any = {}) {
-  // try {
-  //   gsap.TweenMax.set(element, start);
-  // } catch (error) {
-  //   console.error('Set Position Error: ', error);
-  // }
+  try {
+    gsap.set(element, start);
+  } catch (error) {
+    console.error('Set Position Error: ', error);
+  }
 }
 
+// not gsap specific
 export function scaleFromCenter(center: number, offset: number) {
   const scale = (center - offset) / center;
   const transform = {

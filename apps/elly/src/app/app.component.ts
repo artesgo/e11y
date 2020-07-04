@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { GameSettings } from './game-settings/game-settings';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { set, animate, AnimProp } from 'libs/elly/src/lib/gsap.util';
+import { Linear } from 'gsap';
 
 @Component({
   selector: 'elly-root',
@@ -43,7 +44,7 @@ export class AppComponent {
     const leaf: Element = this.rotato.nativeElement;
     const duration = 1.3;
     const start = { rotation: '0' };
-    const ease = gsap.Linear.easeNone;
+    const ease = Linear.easeNone;
     const animation: AnimProp = { rotation: '60' };
     const callback = () => {
       console.log("i'm done");
@@ -67,5 +68,4 @@ export class AppComponent {
   focus(slide: any) {
     this.slide = slide;
   }
-  
 }
