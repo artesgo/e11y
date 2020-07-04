@@ -46,8 +46,8 @@ export class SelectComponent implements ControlValueAccessor, AfterViewInit {
   
   //#region : View
   @ViewChildren('radio') radios: QueryList<any>;
-  @ViewChild('svg') svg: ElementRef;
-  @ViewChild('pettles') pettles: ElementRef;
+  @ViewChild('svg', { static: true }) svg: ElementRef;
+  @ViewChild('pettles', { static: true }) pettles: ElementRef;
   //#endregion : View
 
   //#region : Properties

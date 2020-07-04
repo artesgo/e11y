@@ -155,8 +155,12 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": "4101f7e0-4a70-4fd2-b3f6-c790e8e70bb4"
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "analytics": false
   },
   "schematics": {
     "@nrwl/angular:application": {

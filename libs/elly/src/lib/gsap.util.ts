@@ -16,26 +16,26 @@ export interface AnimProp {
 export function animate(
   element: Element,
   duration: number,
-  ease: gsap.Ease,
+  ease: any,
   animation: AnimProp,
   callback?
 ) {
-  try {
-    gsap.TweenMax.to(element, duration, {
-      ease,
-      ...animation,
-    }).eventCallback('onComplete', callback ? callback : () => {});
-  } catch (error) {
-    console.error('Animation Error: ', error);
-  }
+  // try {
+  //   gsap.TweenMax.to(element, duration, {
+  //     ease,
+  //     ...animation,
+  //   }).eventCallback('onComplete', callback ? callback : () => {});
+  // } catch (error) {
+  //   console.error('Animation Error: ', error);
+  // }
 }
 
 export function set(element: Element, start: any = {}) {
-  try {
-    gsap.TweenMax.set(element, start);
-  } catch (error) {
-    console.error('Set Position Error: ', error);
-  }
+  // try {
+  //   gsap.TweenMax.set(element, start);
+  // } catch (error) {
+  //   console.error('Set Position Error: ', error);
+  // }
 }
 
 export function scaleFromCenter(center: number, offset: number) {
