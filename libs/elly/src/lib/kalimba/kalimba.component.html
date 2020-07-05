@@ -1,16 +1,26 @@
-<svg focusable="false" [attr.width]="542" [attr.height]="600" #tabs>
-  <!-- pettles needed to be defined separately to allow scaling from the center -->
-  <g #pettles>
-    <svg:rect
-      *ngFor="let leaf of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]; let j = index"
-      fill="#8F8"
-      stroke-width="1px"
-      stroke="#000"
-      [attr.x]="getPosition(j) + 1"
-      y="-31"
-      rx="15"
-      [attr.width]="unit - 4"
-      height="630"
-    ></svg:rect>
-  </g>
-</svg>
+<section tabindex="0" (keydown)="parse($event)">
+  <svg focusable="false" [attr.width]="542" [attr.height]="600" #tabs>
+    <g>
+      <svg:rect
+        *ngFor="let leaf of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]; let j = index"
+        [attr.fill]="getFill(j)"
+        stroke-width="1px"
+        stroke="#000"
+        [attr.x]="getPosition(j)"
+        [attr.y]="getPositionV(j)"
+        rx="15"
+        [attr.width]="unit - gap"
+        height="630"
+      ></svg:rect>
+      
+      <svg:rect
+        stroke-width="1px"
+        stroke="#000"
+        [attr.x]="0"
+        [attr.y]="500"
+        [attr.width]="542"
+        height=".1"
+      ></svg:rect>
+    </g>
+  </svg>
+</section>

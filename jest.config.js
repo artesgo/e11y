@@ -1,4 +1,6 @@
 module.exports = {
+  bail: 1,
+  displayName: true,
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
   transform: {
     '^.+\\.(ts|js|html)$': 'ts-jest'

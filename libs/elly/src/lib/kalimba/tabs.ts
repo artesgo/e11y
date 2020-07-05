@@ -1,6 +1,6 @@
 import { Note } from './note';
 
-export class Tabs {
+export interface Tabs {
   name: string;
   author: string;
   
